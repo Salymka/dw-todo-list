@@ -1,0 +1,14 @@
+@import 'reset';
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;500&family=Space+Grotesk:wght@300;400;500&display=swap');
+
+body {
+  font: 100% 'Jost', sans-serif;
+
+  background-color: #fafbfd;
+}
+
+h1,
+h2,
+button {
+  font-family: 'Space Grotesk', sans-serif;
+}
