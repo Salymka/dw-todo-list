@@ -1,0 +1,59 @@
+.quickTasks {
+  width: 100%;
+  min-height: 580px;
+  margin-top: 20px;
+
+  border-radius: 4px;
+  border: 2px solid;
+  border-color: #29303b;
+}
+
+.quickTasks__title {
+  font-size: 20px;
+  color: white;
+  background-color: #29303b;
+  padding: 10px 15px;
+}
+
+.quickTasks__addNewTask {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #29303b;
+}
+
+.quickTasks__inputNewTask {
+  all: unset;
+
+  width: 100%;
+  text-align: start;
+
+  padding: 10px 15px;
+}
+
+.quickTasks__addNewTaskBtn {
+  text-align: end;
+  font-size: 20px;
+  width: max-content;
+
+  padding: 10px 15px;
+  cursor: pointer;
+
+  background-color: #cc5c38;
+  color: #1e2424;
+}
+
+.quickTasks__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.quickTask {
+  padding: 0 15px;
+  margin-top: 15px;
+}
+
+.quickTasks__empty {
+  text-align: center;
+  padding: 20px 20px;
+  font-size: 22px;
+}

@@ -7,10 +7,11 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.header__content}>
-        <h1 className={styles.siteName}>{`DW \xa0\xa0 TODO \xa0List`}</h1>
+        <h1 className={styles.siteName}>{`WW \xa0 TODO \xa0List`}</h1>
         <div className={styles.header__buttons}>
-          <HeaderBtn>Get moco data</HeaderBtn>
+          <HeaderBtn>Get mock data</HeaderBtn>
           <HeaderBtn>Create new folder</HeaderBtn>
+          <HeaderBtn link="/my-todo-list">My TODO list</HeaderBtn>
         </div>
       </div>
     </div>
