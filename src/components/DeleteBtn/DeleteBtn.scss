@@ -1,0 +1,36 @@
+.deleteBtn {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  background-color: #cc5d38bf;
+
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+
+  &::after,
+  &::before {
+    content: '';
+    background-color: white;
+    width: 4px;
+    height: 60%;
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 1px;
+    top: 20%;
+    left: 43%;
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+    transform: translate(2px, -2px);
+  }
+}

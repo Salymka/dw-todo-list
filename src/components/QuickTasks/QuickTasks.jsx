@@ -4,7 +4,7 @@ import styles from './QuickTasks.scss';
 
 import { v4 as uuidv4 } from 'uuid';
 
-function QuickTasks({ tasks }) {
+function QuickTasks() {
   const [newTask, setNewTask] = useState('');
   const [quickTaskList, setQuickTaskList] = useState([]);
 
@@ -19,8 +19,8 @@ function QuickTasks({ tasks }) {
     const newQuickTask = {
       id: uuidv4(),
       content: newTask,
-      data: new Date(),
-      status: 'inProgress',
+      date: new Date(),
+      completed: false,
     };
     setQuickTaskList((prev) => {
       return [...prev, newQuickTask];

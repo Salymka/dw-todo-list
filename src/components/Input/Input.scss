@@ -1,0 +1,18 @@
+.customInput {
+  all: unset;
+
+  width: 100%;
+  text-align: start;
+  font: 100% 'Jost', sans-serif;
+  color: #201e1e;
+
+  padding: 10px 15px;
+
+  &::placeholder {
+    color: #20222596;
+    font-weight: 500;
+    // text-decoration: underline dashed;
+  }
+}
+
+//#20222596

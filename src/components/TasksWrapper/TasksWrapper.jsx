@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 import styles from './TasksWrapper.scss';
-import FastTasks from '../QuickTasks/QuickTasks';
+import QuickTasks from '../QuickTasks/QuickTasks';
 import TaskFolder from '../TaskFolder/TaskFolder';
 
 function TasksWrapper() {
@@ -10,7 +10,7 @@ function TasksWrapper() {
 
   return (
     <div className={styles.tasksWrapper}>
-      <FastTasks />
+      <QuickTasks />
       {folders &&
         folders.map((folder) => (
           <div className={styles.folderWrapper}>
