@@ -1,6 +1,33 @@
 .folder {
-  width: 100%;
+  width: calc(50% - 15px);
+  margin-top: 20px;
+  margin-left: 15px;
+  padding-bottom: 10px;
 
   border-radius: 4px;
-  border-color: #29303b;
+  border: 2px solid;
+
+  box-sizing: border-box;
+
+  float: left;
+  display: block;
+
+  &:nth-child(2n + 0) {
+    float: right;
+  }
+}
+
+.folder__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  padding: 10px 15px;
+}
+
+.empty {
+  text-align: center;
+  margin-top: 10px;
 }

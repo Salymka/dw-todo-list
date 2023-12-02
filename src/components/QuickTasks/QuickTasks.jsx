@@ -34,11 +34,11 @@ function QuickTasks() {
 
   const toggleTask = (taskId) => {
     console.log(taskId);
-    const list = quickTaskList.map((task) => {
+    const updatedTasksList = quickTaskList.map((task) => {
       return task.id === taskId ? { ...task, completed: !task.completed } : task;
     });
-    console.log(list);
-    setQuickTaskList(list);
+    localStorageService.updateFullLocalStorageByKey(QUICK_TASK_LIST, updatedTasksList);
+    setQuickTaskList(updatedTasksList);
   };
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function QuickTasks() {
 
   return (
     <div className={styles.quickTasks}>
-      <h2 className={styles.quickTasks__title}>Fast Tasks</h2>
+      <h2 className={styles.quickTasks__title}>Quick Tasks</h2>
       <div className={styles.quickTasks__addNewTask}>
         <input
           className={styles.quickTasks__inputNewTask}

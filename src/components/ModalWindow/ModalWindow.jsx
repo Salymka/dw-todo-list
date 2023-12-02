@@ -35,7 +35,7 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
       ...folder,
       folderName: folder.folderName === '' ? 'newFolder' : folder.folderName,
       id: new Date(),
-      headerColor: headerStyle.background,
+      colorTheme: headerStyle.background,
     });
     setIsOpen(false);
   };
@@ -73,9 +73,7 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
               onChange={(event) => setFoldersName(event.target.value)}
             />
           </div>
-          {folder.tasks.length === 0 && (
-            <div className={styles.modalEmpty}>Start adding tasks</div>
-          )}
+          {folder.tasks.length === 0 && <div className={styles.modalEmpty}>Start adding tasks</div>}
           <div className={styles.modalWindow__tasks}>
             {folder.tasks.length > 0 &&
               folder.tasks.map((task) => (
@@ -92,17 +90,11 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
                 placeHolder={'Write new task'}
                 placeHolderUnderline={true}
               />
-              <button
-                className={styles.modalWindow__addNewTaskBtn}
-                onClick={addNewFolderTask}
-              >
+              <button className={styles.modalWindow__addNewTaskBtn} onClick={addNewFolderTask}>
                 Add
               </button>
             </div>
-            <button
-              className={styles.modalWindow__saveFolderBtn}
-              onClick={addNewFolder}
-            >
+            <button className={styles.modalWindow__saveFolderBtn} onClick={addNewFolder}>
               Save new folder
             </button>
           </div>

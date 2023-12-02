@@ -2,10 +2,14 @@
   width: 100%;
   min-height: 580px;
   margin-top: 20px;
+  padding-bottom: 10px;
 
   border-radius: 4px;
   border: 2px solid;
   border-color: #29303b;
+
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 .quickTasks__title {

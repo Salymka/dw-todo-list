@@ -7,9 +7,20 @@ class localStorageService {
       const data = JSON.parse(localStorage.getItem(key)) || [];
       localStorage.setItem(key, JSON.stringify([...data, value]));
     } catch (e) {
-      // якщо перевищено ліміт
       if (e.name == 'QUOTA_EXCEEDED_ERR')
-        alert('QUOTA_EXCEEDED_ERR:  localStorage перевищено допустимий ліміт');
+        // the permissible limit is exceeded
+        alert('QUOTA_EXCEEDED_ERR:  localStorage - the permissible limit is exceeded');
+      else console.log(e);
+    }
+  }
+
+  updateFullLocalStorageByKey(key, value) {
+    try {
+      localStorage.removeItem(key);
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      if (e.name == 'QUOTA_EXCEEDED_ERR')
+        alert('QUOTA_EXCEEDED_ERR:  localStorage - the permissible limit is exceeded');
       else console.log(e);
     }
   }
