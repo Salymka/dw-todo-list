@@ -5,7 +5,7 @@ import HeaderBtn from '../HeaderBtn/HeaderBtn';
 import ModalWindow from '../ModalWindow/ModalWindow';
 
 const Header = () => {
-  const [isOpenModalWindow, setIsOpenModalWindow] = useState(true);
+  const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
 
   return (
     <div className={styles.header}>

@@ -14,6 +14,8 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
   const [currentTask, setCurrentTask] = useState('');
   const [headerStyle, setHeaderStyle] = useState({});
 
+  console.log(localStorageService.getFromLocalStorageByKey('foldersList'));
+
   const addNewFolderTask = () => {
     const newTask = {
       title: currentTask,
@@ -29,13 +31,9 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
   };
 
   const addNewFolder = () => {
-    !folder.folderName
-      ? setFolder((prev) => {
-          return { ...prev, folderName: 'newFolder' };
-        })
-      : '';
     localStorageService.updateLocalStorageByKey('foldersList', {
       ...folder,
+      folderName: folder.folderName === '' ? 'newFolder' : folder.folderName,
       id: new Date(),
       headerColor: headerStyle.background,
     });

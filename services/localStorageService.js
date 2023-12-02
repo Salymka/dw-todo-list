@@ -1,3 +1,6 @@
+const QUICK_TASK_LIST = 'quickTaskList';
+const FOLDERS_LIST = 'foldersList';
+
 class localStorageService {
   updateLocalStorageByKey(key, value) {
     try {
@@ -22,3 +25,4 @@ class localStorageService {
 }
 
 export default new localStorageService();
+export { QUICK_TASK_LIST, FOLDERS_LIST };
