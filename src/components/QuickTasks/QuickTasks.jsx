@@ -1,49 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './QuickTasks.scss';
 
-import localStorageService, { QUICK_TASK_LIST } from '../../../services/localStorageService';
+import { QUICK_TASK_LIST } from '../../../constants/localStorage';
 
 import { v4 as uuidv4 } from 'uuid';
 
 import Task from '../Task/Task';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 function QuickTasks() {
-  const [newTask, setNewTask] = useState('');
-  const [quickTaskList, setQuickTaskList] = useState([]);
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [quickTaskListLS, setQuickTaskListLS] = useLocalStorage(QUICK_TASK_LIST, []);
 
-  const inputNewTask = (value) => {
-    setNewTask(value);
+  const changeNewTaskTitle = (value) => {
+    setNewTaskTitle(value);
   };
 
-  console.log(quickTaskList);
-
   const addNewQuickTask = () => {
+    if (!newTaskTitle) {
+      return;
+    }
     const newQuickTask = {
       id: uuidv4(),
-      title: newTask,
+      title: newTaskTitle,
       date: new Date(),
       completed: false,
     };
-    setQuickTaskList((prev) => {
-      return [...prev, newQuickTask];
-    });
-    localStorageService.updateLocalStorageByKey(QUICK_TASK_LIST, newQuickTask);
-    setNewTask('');
+    setQuickTaskListLS((prev) => [...prev, newQuickTask]);
+    setNewTaskTitle('');
   };
 
   const toggleTask = (taskId) => {
-    console.log(taskId);
-    const updatedTasksList = quickTaskList.map((task) => {
+    const updatedTasksList = quickTaskListLS.map((task) => {
       return task.id === taskId ? { ...task, completed: !task.completed } : task;
     });
-    localStorageService.updateFullLocalStorageByKey(QUICK_TASK_LIST, updatedTasksList);
-    setQuickTaskList(updatedTasksList);
+    setQuickTaskListLS(updatedTasksList);
   };
-
-  useEffect(() => {
-    setQuickTaskList(localStorageService.getFromLocalStorageByKey(QUICK_TASK_LIST));
-  }, []);
 
   return (
     <div className={styles.quickTasks}>
@@ -52,18 +45,16 @@ function QuickTasks() {
         <input
           className={styles.quickTasks__inputNewTask}
           placeholder="Write new task"
-          value={newTask}
-          onChange={(event) => inputNewTask(event.target.value)}
+          value={newTaskTitle}
+          onChange={(event) => changeNewTaskTitle(event.target.value)}
         ></input>
         <button className={styles.quickTasks__addNewTaskBtn} onClick={addNewQuickTask}>
           GO
         </button>
       </div>
       <div className={styles.quickTasks__list}>
-        {quickTaskList.length > 0 ? (
-          quickTaskList.map((task, index) => (
-            <Task key={task.id} task={task} toggleTask={toggleTask} />
-          ))
+        {quickTaskListLS.length > 0 ? (
+          quickTaskListLS.map((task) => <Task key={task.id} task={task} toggleTask={toggleTask} />)
         ) : (
           <h2 className={styles.quickTasks__empty}>No quick tasks yet</h2>
         )}

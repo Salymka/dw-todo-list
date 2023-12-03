@@ -1,38 +1,80 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
-export default function useLocalStorage(key, initValue) {
-  const [state, setState] = useState(() => {
-    const value = localStorage.getItem(key);
-    if (value !== null) {
-      return JSON.parse(value);
+export default function useLocalStorage(key, initialValue) {
+  // Get from local storage then
+  // parse stored json or return initialValue
+  const readValue = useCallback(() => {
+    // Prevent build error "window is undefined" but keeps working
+    if (typeof window === 'undefined') {
+      return initialValue;
     }
 
-    localStorage.setItem(key, JSON.stringify(initValue));
-    window.dispatchEvent(new Event('storage'));
-    return initValue;
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? parseJSON(item) : initialValue;
+    } catch (error) {
+      console.warn(`Error reading localStorage key “${key}”:`, error);
+      return initialValue;
+    }
+  }, [initialValue, key]);
+
+  // State to store our value
+  // Pass initial state function to useState so logic is only executed once
+  const [storedValue, setStoredValue] = useState(readValue);
+
+  // Return a wrapped version of useState's setter function that ...
+  // ... persists the new value to localStorage.
+  const setValue = useCallback((value) => {
+    // Prevent build error "window is undefined" but keeps working
+    if (typeof window === 'undefined') {
+      console.warn(
+        `Tried setting localStorage key “${key}” even though environment is not a client`
+      );
+    }
+
+    try {
+      // Allow value to be a function so we have the same API as useState
+      const newValue = value instanceof Function ? value(storedValue) : value;
+
+      // Save to local storage
+      window.localStorage.setItem(key, JSON.stringify(newValue));
+
+      // Save state
+      setStoredValue(newValue);
+
+      window.dispatchEvent(new Event('local-storage'));
+    } catch (error) {
+      console.warn(`Error setting localStorage key “${key}”:`, error);
+    }
   });
 
   useEffect(() => {
-    localStorage.setItem(key, state);
-    window.dispatchEvent(new Event('storage'));
-  }, [key, state]);
-
-  useEffect(() => {
-    const listenStorageChange = () => {
-      setState(() => {
-        const value = localStorage.getItem(key);
-        if (value !== null) {
-          return JSON.parse(value);
-        }
-
-        localStorage.setItem(key, JSON.stringify(initValue));
-        window.dispatchEvent(new Event('storage'));
-        return initValue;
-      });
-    };
-    window.addEventListener('storage', listenStorageChange);
-    return () => window.removeEventListener('storage', listenStorageChange);
+    setStoredValue(readValue());
   }, []);
 
-  return [state, setState];
+  const handleStorageChange = useCallback(
+    (event) => {
+      if (event?.key && event.key !== key) {
+        return;
+      }
+      setStoredValue(readValue());
+    },
+    [key, readValue]
+  );
+
+  // this only works for other documents, not the current one
+  window.addEventListener('storage', handleStorageChange);
+  window.addEventListener('local-storage', handleStorageChange);
+
+  return [storedValue, setValue];
+}
+
+// A wrapper for "JSON.parse()"" to support "undefined" value
+function parseJSON(value) {
+  try {
+    return value === 'undefined' ? undefined : JSON.parse(value ?? '');
+  } catch {
+    console.log('parsing error on', { value });
+    return undefined;
+  }
 }

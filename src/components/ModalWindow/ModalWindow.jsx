@@ -7,16 +7,19 @@ import DeleteBtn from '../DeleteBtn/DeleteBtn';
 import Input from '../Input/Input';
 
 import generateColor from '../../../services/colorGenerator';
-import localStorageService from '../../../services/localStorageService';
+import { FOLDERS_LIST } from '../../../constants/localStorage';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
-function ModalWindow({ setIsOpen, createNewFolder }) {
-  const [folder, setFolder] = useState({ folderName: '', tasks: [] });
+function ModalWindow({ setIsOpen }) {
+  const [folder, setFolder] = useState({ folderName: '', tasks: [], colorTheme: generateColor() });
   const [currentTask, setCurrentTask] = useState('');
-  const [headerStyle, setHeaderStyle] = useState({});
 
-  console.log(localStorageService.getFromLocalStorageByKey('foldersList'));
+  const [foldersListLS, setFoldersListLS] = useLocalStorage(FOLDERS_LIST, []);
 
   const addNewFolderTask = () => {
+    if (!currentTask) {
+      return;
+    }
     const newTask = {
       title: currentTask,
       id: uuidv4(),
@@ -31,12 +34,12 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
   };
 
   const addNewFolder = () => {
-    localStorageService.updateLocalStorageByKey('foldersList', {
+    const newFolder = {
       ...folder,
       folderName: folder.folderName === '' ? 'newFolder' : folder.folderName,
       id: new Date(),
-      colorTheme: headerStyle.background,
-    });
+    };
+    setFoldersListLS((prev) => [...prev, newFolder]);
     setIsOpen(false);
   };
 
@@ -54,18 +57,13 @@ function ModalWindow({ setIsOpen, createNewFolder }) {
     setIsOpen(false);
   };
 
-  useEffect(() => {
-    const headerColor = generateColor();
-    setHeaderStyle({ background: headerColor });
-  }, []);
-
   return (
     <>
       <div className={styles.darkBG} onClick={closeModalWindow} />
       <div className={styles.centered}>
         <DeleteBtn onClick={closeModalWindow} />
         <div className={styles.modal}>
-          <div className={styles.modalHeader} style={headerStyle}>
+          <div className={styles.modalHeader} style={{ background: folder.colorTheme }}>
             <input
               className={styles.modalHeader__input}
               placeholder="Add Folder Name"

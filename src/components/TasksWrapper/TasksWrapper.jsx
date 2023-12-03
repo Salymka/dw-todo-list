@@ -4,52 +4,35 @@ import { useState } from 'react';
 import styles from './TasksWrapper.scss';
 import QuickTasks from '../QuickTasks/QuickTasks';
 import TaskFolder from '../TaskFolder/TaskFolder';
-import localStorageService, { FOLDERS_LIST } from '../../../services/localStorageService';
+import { FOLDERS_LIST } from '../../../constants/localStorage';
+
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 function TasksWrapper() {
-  const [folders, setFolders] = useState(null);
-
-  console.log(folders);
+  const [foldersListLS, setFoldersListLS] = useLocalStorage(FOLDERS_LIST, null);
 
   const deleteFolder = (folderId) => {
-    const updatedFoldersList = folders.filter((folder) => folder.id !== folderId);
-    localStorageService.updateFullLocalStorageByKey(FOLDERS_LIST, updatedFoldersList);
-    setFolders(updatedFoldersList);
+    const updatedFoldersList = foldersListLS.filter((folder) => folder.id !== folderId);
+    setFoldersListLS(updatedFoldersList);
   };
-
-  // const addNewFolder = (folder) => {
-  //   localStorageService.updateLocalStorageByKey(FOLDERS_LIST, folder);
-  //   setFolders(updatedFoldersList);
-  // };
 
   const updateFolder = (updetedfolder) => {
-    const updatedFolders = folders.map((folder) => {
+    const updatedFolders = foldersListLS.map((folder) => {
       return folder.id === updetedfolder.id ? updetedfolder : folder;
     });
-    localStorageService.updateFullLocalStorageByKey(FOLDERS_LIST, updatedFolders);
-    setFolders(updatedFolders);
+    setFoldersListLS(updatedFolders);
   };
 
-  const getFoldersFromLS = () => {
-    setFolders(localStorageService.getFromLocalStorageByKey(FOLDERS_LIST));
-    console.log('update folders');
+  const sortList = () => {
+    return [...foldersListLS].sort((a) => a.id).reverse();
   };
-
-  useEffect(() => {
-    getFoldersFromLS();
-    window.addEventListener('storage', getFoldersFromLS, false);
-
-    return () => {
-      window.removeEventListener('storage', getFoldersFromLS, false);
-    };
-  }, []);
 
   return (
     <div className={styles.tasksWrapper}>
       <QuickTasks />
-      {folders && (
-        <div className={styles.folderWrapper}>
-          {folders.map((folder) => (
+      {foldersListLS && (
+        <div className={styles.foldersWrapper}>
+          {sortList().map((folder) => (
             <TaskFolder
               key={folder.id}
               folder={folder}
