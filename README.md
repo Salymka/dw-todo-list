@@ -46,7 +46,7 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 2. Navigate to the project directory:
 
-`$: cd react-todo-list`
+`$: cd ww-todo-list`
 
 3. Install dependencies:
 
