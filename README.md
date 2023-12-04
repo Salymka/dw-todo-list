@@ -42,7 +42,7 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 1. Clone the repository:
 
-`$: git clone https://github.com/your-username/react-todo-list.git`
+`$: git clone https://github.com/Salymka/ww-todo-list.git`
 
 2. Navigate to the project directory:
 
