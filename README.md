@@ -1,4 +1,4 @@
-# React Todo-list Web App
+# React WellWork Todo-list Web App
 
 ## Overview
 
@@ -30,7 +30,7 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 - React
 - JavaScript
-- CSS
+- SCSS
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 1. Clone the repository:
 
-   `$: git clone https://github.com/your-username/react-todo-list.git`
+`$: git clone https://github.com/your-username/react-todo-list.git`
 
 2. Navigate to the project directory:
 
@@ -50,11 +50,11 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 3. Install dependencies:
 
-`npm install`
+`$: npm install`
 
 4. Run the development server:
 
-`npm run start`
+`$: npm run start`
 
 - Visit http://localhost:3000 in your web browser to access the Todo-list app.
 
