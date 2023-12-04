@@ -97,7 +97,7 @@ In the Quick Tasks block, you can perform the following actions:
 Additionally, there is a pagination feature to navigate through a large number of old tasks.
 
 <div align="center">
-  <img src="image-3.png" alt="Your Image Description">
+  <img src="./ReadmeFiles/image-3.png" alt="Your Image Description">
 </div>
 
 ## Themed Folders Panel and Editing Window
@@ -110,9 +110,9 @@ The Themed Folders panel displays folders sorted by the date of creation, with t
 When creating a themed folder, it is assigned a distinct color for easier visual identification.
 
 <div align="center">
-  <img src="image-4.png" alt="Your Image Description">
+  <img src="./ReadmeFiles/image-4.png" alt="Your Image Description">
 </div>
 
 <div align="center">
-  <img src="image-5.png" alt="Your Image Description">
+  <img src="./ReadmeFiles/image-5.png" alt="Your Image Description">
 </div>
