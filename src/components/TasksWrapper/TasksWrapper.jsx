@@ -29,7 +29,7 @@ function TasksWrapper() {
 
   return (
     <div className={styles.tasksWrapper}>
-      <QuickTasks />
+      <QuickTasks limit={10} />
       {foldersListLS && (
         <div className={styles.foldersWrapper}>
           {sortList().map((folder) => (

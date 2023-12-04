@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styles from './HeaderBtn.scss';
+import styles from './CustomButton.scss';
 
 function HeaderBtn({ children, link = null, onClick = null }) {
   const navigate = useNavigate();

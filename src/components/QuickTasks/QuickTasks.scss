@@ -1,6 +1,14 @@
-.quickTasks {
+.quickTasks__wrrapper {
+  width: auto;
   width: 33.3%;
-  min-height: 580px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.quickTasks {
+  width: 100%;
+  min-height: 480px;
   height: max-content;
   margin-top: 20px;
   padding-bottom: 10px;
@@ -61,4 +69,16 @@
   text-align: center;
   padding: 20px 20px;
   font-size: 22px;
+}
+
+.quickTasks__pagination {
+  width: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  justify-content: space-between;
+
+  & button {
+    margin: 0;
+  }
 }
