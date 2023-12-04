@@ -2,10 +2,12 @@
   width: auto;
   padding: 0 20px;
   margin-top: 20px;
+  position: relative;
 }
 
 .task__wrapper {
   display: flex;
+  height: max-content;
   align-items: center;
 }
 
@@ -38,7 +40,7 @@
   &::before {
     position: absolute;
     content: '';
-    top: 7px;
+    top: 8px;
     width: 50%;
     right: 7px;
     height: 4px;
@@ -63,4 +65,33 @@
 
 .task__title_complete {
   text-decoration: line-through;
+}
+
+.deleteTaskBtn {
+  width: 15px;
+  height: 15px;
+
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 25%;
+
+  cursor: pointer;
+
+  &::after,
+  &::before {
+    content: '';
+    background-color: #cc5c38;
+    width: 4px;
+    height: 100%;
+    position: absolute;
+    transform: rotate(45deg);
+    border-radius: 1px;
+    top: 0;
+    right: 25%;
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
 }

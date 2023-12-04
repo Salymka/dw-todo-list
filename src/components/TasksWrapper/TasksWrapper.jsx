@@ -7,13 +7,21 @@ import TaskFolder from '../TaskFolder/TaskFolder';
 import { FOLDERS_LIST } from '../../../constants/localStorage';
 
 import useLocalStorage from '../../../hooks/useLocalStorage';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 function TasksWrapper() {
   const [foldersListLS, setFoldersListLS] = useLocalStorage(FOLDERS_LIST, null);
+  const [ConfigWindow, setConfigWindow] = useState(null);
 
   const deleteFolder = (folderId) => {
     const updatedFoldersList = foldersListLS.filter((folder) => folder.id !== folderId);
     setFoldersListLS(updatedFoldersList);
+  };
+
+  const setconfigFolder = (folder) => {
+    if (!folder) return;
+    setConfigWindow(folder);
+    console.log(folder);
   };
 
   const updateFolder = (updetedfolder) => {
@@ -29,6 +37,12 @@ function TasksWrapper() {
 
   return (
     <div className={styles.tasksWrapper}>
+      {ConfigWindow && (
+        <ModalWindow
+          setIsOpen={() => setConfigWindow(null)}
+          folderConfig={ConfigWindow}
+        ></ModalWindow>
+      )}
       <QuickTasks limit={10} />
       {foldersListLS && (
         <div className={styles.foldersWrapper}>
@@ -38,6 +52,7 @@ function TasksWrapper() {
               folder={folder}
               deleteFolder={deleteFolder}
               updateFolder={updateFolder}
+              configFolder={setconfigFolder}
             />
           ))}
         </div>

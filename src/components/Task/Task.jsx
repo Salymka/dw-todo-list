@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './Task.scss';
 
-function Task({ task, toggleTask }) {
+function Task({ task, toggleTask, deleteTask, hideDelete = false }) {
   return (
     <div className={styles.task}>
       <label className={styles.task__wrapper}>
@@ -24,6 +24,9 @@ function Task({ task, toggleTask }) {
           {task.title}
         </span>
       </label>
+      {!hideDelete && (
+        <button className={styles.deleteTaskBtn} onClick={() => deleteTask(task.id)}></button>
+      )}
     </div>
   );
 }

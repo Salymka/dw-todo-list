@@ -58,6 +58,11 @@ function QuickTasks({ limit }) {
     setQuickTaskListLS(updatedTasksList);
   };
 
+  const deleteTask = (taskId) => {
+    const updatedTasksList = quickTaskListLS.filter((task) => task.id !== taskId);
+    setQuickTaskListLS(updatedTasksList);
+  };
+
   return (
     <div className={styles.quickTasks__wrrapper}>
       <div className={styles.quickTasks}>
@@ -76,7 +81,7 @@ function QuickTasks({ limit }) {
         <div className={styles.quickTasks__list}>
           {quickTaskListLS.length > 0 ? (
             quickTaskListLSOnPage().map((task) => (
-              <Task key={task.id} task={task} toggleTask={toggleTask} />
+              <Task key={task.id} task={task} toggleTask={toggleTask} deleteTask={deleteTask} />
             ))
           ) : (
             <h2 className={styles.quickTasks__empty}>No quick tasks yet</h2>
