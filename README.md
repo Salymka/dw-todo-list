@@ -75,3 +75,38 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 ## Test Data
 
 - For testing purposes, the app fetches mock data from [JSONPlaceholder](https://jsonplaceholder.typicode.com/). You can disable this feature for production use.
+
+## Website Header
+
+The website header features three buttons:
+
+1. **Get Mock Data** ![Get Mock Data](image.png) - Allows you to retrieve mock data and display it in the quick tasks block.
+
+2. **Create New Folder** ![Create New Folder](image-1.png) - Opens a window for creating a themed folder.
+
+3. **My TODO List** ![My TODO List](image-2.png) - Navigates from the global page to the task lists.
+
+## Quick Tasks
+
+In the Quick Tasks block, you can perform the following actions:
+
+- Add new tasks.
+- Delete tasks.
+- Mark tasks as completed.
+
+Additionally, there is a pagination feature to navigate through a large number of old tasks.
+
+![Quick task bar](image-3.png)
+
+## Themed Folders Panel and Editing Window
+
+The Themed Folders panel displays folders sorted by the date of creation, with the freshest ones at the top. Each folder has the following functionalities:
+
+- **Delete:** Remove the folder.
+- **Update Content:** Edit the content of the folder.
+
+When creating a themed folder, it is assigned a distinct color for easier visual identification.
+
+![Create new Folder](image-4.png){style: "margin: 0 auto"}
+
+![Theme-folders](image-5.png#center)
