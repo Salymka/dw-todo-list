@@ -80,11 +80,11 @@ This is a feature-rich React Todo-list web app that allows users to manage their
 
 The website header features three buttons:
 
-1. **Get Mock Data** ![Get Mock Data](image.png) - Allows you to retrieve mock data and display it in the quick tasks block.
+1. ![Get Mock Data](image.png) - Allows you to retrieve mock data and display it in the quick tasks block.
 
-2. **Create New Folder** ![Create New Folder](image-1.png) - Opens a window for creating a themed folder.
+2. ![Create New Folder](image-1.png) - Opens a window for creating a themed folder.
 
-3. **My TODO List** ![My TODO List](image-2.png) - Navigates from the global page to the task lists.
+3. ![My TODO List](image-2.png) - Navigates from the global page to the task lists.
 
 ## Quick Tasks
 
@@ -96,7 +96,9 @@ In the Quick Tasks block, you can perform the following actions:
 
 Additionally, there is a pagination feature to navigate through a large number of old tasks.
 
-![Quick task bar](image-3.png)
+<div align="center">
+  <img src="image-3.png" alt="Your Image Description">
+</div>
 
 ## Themed Folders Panel and Editing Window
 
@@ -107,6 +109,10 @@ The Themed Folders panel displays folders sorted by the date of creation, with t
 
 When creating a themed folder, it is assigned a distinct color for easier visual identification.
 
-![Create new Folder](image-4.png){style: "margin: 0 auto"}
+<div align="center">
+  <img src="image-4.png" alt="Your Image Description">
+</div>
 
-![Theme-folders](image-5.png#center)
+<div align="center">
+  <img src="image-5.png" alt="Your Image Description">
+</div>
